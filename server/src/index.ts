@@ -1,14 +1,25 @@
 import express, { Request, Response } from "express"
+
+import {config} from "dotenv"
+config()
+
 import mongoose from 'mongoose'
 import Deck from './models/Deck'
 const port = 5000
 const app = express()
+app.use(express.json())
 
-app.get('/', (req: Request, res: Response) => {
-    res.send("Hello")
+app.post('/decks', async (req: Request, res: Response) => {
+    console.log(req.body);
+
+    const newDeck = new Deck({
+        title: 'First Deck'
+    })
+    const  createdDeck = await newDeck.save()
+    res.json(createdDeck)
 })
 
-mongoose.connect('mongodb+srv://flashcard-user:12345@cluster0.3mdkncw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGO_URL!)
 .then(() => {
     console.log(`Listening at port ${port}`)
     app.listen(port)
