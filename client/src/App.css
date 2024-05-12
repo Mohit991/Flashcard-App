@@ -1,42 +1,102 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.App {
+  display: flex;
+  flex-wrap: wrap; /* Allow flex items to wrap to next line */
+  justify-content: center; /* Center items horizontally */
+  padding: 20px;
 }
 
 .card {
-  padding: 2em;
+  border: 3px solid #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(207, 112, 112, 0.1);
+  padding: 20px;
+  margin: 10px; /* Add margin between cards */
+  width: 200px;
+  height: 200px;
+  background-color: #bbbd39;
 }
 
-.read-the-docs {
-  color: #888;
+.card:hover{
+  background: #9c9c06;
+  cursor: pointer;
+}
+
+.card-title {
+  color: rgb(65, 25, 25);
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-content {
+  font-size: 1rem;
+}
+
+
+
+.input-form {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+.input-form form {
+  width: 100%;
+  max-width: 400px; /* Adjust maximum width as needed */
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+  align-items: center; /* Center form elements horizontally */
+}
+
+.input-label {
+  margin-top: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.submit-button {
+  width: 35%; /* Make button take full width */
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 0; /* Adjust button padding */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 0; /* Adjust button margin */
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.separator {
+  width: 70%; /* Adjust the width of the separator as needed */
+  /* margin: 0 auto; Center the separator horizontally */
+  border-top: 1px solid #ccc; /* Style the separator */
 }

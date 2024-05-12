@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express"
-
+import cors from 'cors'
 import {config} from "dotenv"
 config()
 
@@ -7,15 +7,23 @@ import mongoose from 'mongoose'
 import Deck from './models/Deck'
 const port = 5000
 const app = express()
+app.use(cors())
 app.use(express.json())
 
-app.post('/decks', async (req: Request, res: Response) => {
-    console.log(req.body);
+app.get('/decks', async (req: Request, res: Response) => {
+    const decks = await Deck.find()
+    // console.log(decks);
+    res.json(decks)
+})
 
+app.post('/decks', async (req: Request, res: Response) => {
+    const deckTitle = req.body.title
+    // console.log(deckTitle);
+    
     const newDeck = new Deck({
-        title: 'First Deck'
+        title: deckTitle
     })
-    const  createdDeck = await newDeck.save()
+    const createdDeck = await newDeck.save()
     res.json(createdDeck)
 })
 
