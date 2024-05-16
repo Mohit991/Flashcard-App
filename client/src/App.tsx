@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-
-type TDeck = {
-  title: string,
-  _id: string
-}
+import { Link } from 'react-router-dom';
+import { createDeck } from './api/createDeck';
+import { deleteDeck } from './api/deleteDeck';
+import { getDecks } from './api/getDecks';
+import {TDeck} from './api/createDeck'
 
 function App() {
   const [decks, setDecks] = useState<TDeck[]>([]);
@@ -12,23 +12,20 @@ function App() {
 
   async function handleCreateDeck(e) {
     e.preventDefault();
-    await fetch('http://localhost:5000/decks', {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-      }),
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
+    const deck = await createDeck(title) 
+    setDecks([...decks, deck])
     setTitle('');
+  }
+
+  async function handleDeleteDeck(deckId: string) {
+    await deleteDeck(deckId);
+    setDecks(decks.filter((deck) => deck._id !== deckId));
   }
 
   useEffect(() => {
     async function fetchDecks() {
-      const res = await fetch('http://localhost:5000/decks');
-      const newDecks = await res.json();
-      setDecks(newDecks);
+      const allDecks = await getDecks()
+      setDecks(allDecks);
     }
     fetchDecks();
   }, []);
@@ -48,11 +45,13 @@ function App() {
         <button className="submit-button" type="submit">Create Deck</button>
       </form>
     </div>
-    <hr className='separator'/>
     <div className="App">
       {decks.map((deck) => (
         <div key={deck._id} className="card">
-          <h2 className="card-title">{deck.title}</h2>
+          <button onClick={() => handleDeleteDeck(deck._id)}>X</button>
+          <Link to={`decks/${deck._id}`}>
+            <h2 className="card-title">{deck.title}</h2>
+          </Link>
           {/* You can add more content here if needed */}
         </div>
       ))}

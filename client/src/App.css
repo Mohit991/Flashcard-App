@@ -1,5 +1,3 @@
-/* App.css */
-
 body {
   margin: 0;
   padding: 0;
@@ -7,9 +5,12 @@ body {
 
 .App {
   display: flex;
+  flex-direction: column; /* Arrange .App content in a column */
   flex-wrap: wrap; /* Allow flex items to wrap to next line */
   justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
   padding: 20px;
+  gap: 20px; /* Adjust the gap between the form and the card deck */
 }
 
 .card {
@@ -23,7 +24,7 @@ body {
   background-color: #bbbd39;
 }
 
-.card:hover{
+.card:hover {
   background: #9c9c06;
   cursor: pointer;
 }
@@ -42,11 +43,12 @@ body {
   font-size: 1rem;
 }
 
-
-
 .input-form {
   display: flex;
   justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
+  margin-bottom: 20px; /* Adjust the margin between the form and the card deck */
 }
 
 .input-form form {
@@ -93,10 +95,4 @@ body {
 
 .submit-button:hover {
   background-color: #45a049; /* Darker green on hover */
-}
-
-.separator {
-  width: 70%; /* Adjust the width of the separator as needed */
-  /* margin: 0 auto; Center the separator horizontally */
-  border-top: 1px solid #ccc; /* Style the separator */
 }
