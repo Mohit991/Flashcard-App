@@ -11,6 +11,8 @@ import { deleteDeckController } from "./controllers/deleteDeckController"
 import { createCardForDeckController } from "./controllers/createCardForDeckController"
 import { getDeckController } from "./controllers/getDeckController"
 import { deleteCardOnDeckController } from "./controllers/deleteCardOnDeck"
+import { getUserController } from "./controllers/getUserController"
+import { createUserController } from "./controllers/createUserController"
 
 const port = 5000
 const app = express()
@@ -25,6 +27,8 @@ app.get('/decks/:deckId', getDeckController)
 app.post('/decks/:deckId/cards', createCardForDeckController)
 app.delete('/decks/:deckId/cards/:index', deleteCardOnDeckController)
 
+app.get('/user', getUserController)
+app.post('/user', createUserController)
 
 mongoose.connect(process.env.MONGO_URL!)
 .then(() => {
